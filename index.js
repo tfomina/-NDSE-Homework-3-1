@@ -44,6 +44,14 @@ const options = yargs(hideBin(process.argv))
 
 process.stdout.write(`Введите ответ 1 (орёл) или 2 (решка)\n`);
 input.on("line", (answer) => {
+  const output = playGame(answer);
+
+  console.log(output);
+
+  writeLog(options.filename, output);
+});
+
+const playGame = (answer) => {
   const randomNum = generateRandomNumFromArr(POSSIBLE_ANSWERS);
 
   if (!answer || !POSSIBLE_ANSWERS.includes(answer)) {
@@ -53,8 +61,10 @@ input.on("line", (answer) => {
   const result = randomNum === answer ? "Угадано верно" : "Не угадано";
   const output = `Число, загаданное компьютером: ${randomNum}. Число, введенное пользователем: ${answer}. ${result}.\n`;
 
-  console.log(output);
+  return output;
+};
 
+const writeLog = (filename, output) => {
   const dirPath = getDirPath();
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, (err) => {
@@ -62,7 +72,7 @@ input.on("line", (answer) => {
     });
   }
 
-  const filePath = getFilePath(options.filename);
+  const filePath = getFilePath(filename);
 
   const date = new Date().toLocaleString("ru-RU");
   const logOutput = `${date}. ${output}`;
@@ -84,4 +94,4 @@ input.on("line", (answer) => {
       }
     );
   }
-});
+};
