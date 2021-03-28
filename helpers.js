@@ -7,7 +7,7 @@ const validateFilename = (filename) => {
   let error = "";
 
   if (!filename) {
-    error = `Имя файла не может быть пустым. Введите другое имя файла.`;
+    error = "Имя файла не может быть пустым. Введите другое имя файла.";
   }
 
   const filePath = getFilePath(filename);
