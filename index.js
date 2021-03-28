@@ -42,7 +42,9 @@ const options = yargs(hideBin(process.argv))
   .strict()
   .help().argv;
 
-process.stdout.write(`Введите ответ 1 (орёл) или 2 (решка)\n`);
+process.stdout.write(
+  `Введите ответ ${POSSIBLE_ANSWERS[0]} (орёл) или ${POSSIBLE_ANSWERS[1]} (решка)\n`
+);
 input.on("line", (answer) => {
   const output = playGame(answer);
 
