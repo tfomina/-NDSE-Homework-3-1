@@ -39,6 +39,7 @@ const options = yargs(hideBin(process.argv))
     console.error(yargs.help());
     process.exit(-1);
   })
+  .strict()
   .help().argv;
 
 process.stdout.write(`Введите ответ 1 (орёл) или 2 (решка)\n`);
